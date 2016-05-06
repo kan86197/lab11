@@ -71,18 +71,16 @@ public class Student {
 	private void setBirthdate(String datestr) {
 		Scanner scanner = new Scanner(datestr);
 		scanner.useDelimiter("/");
-		if (!scanner.hasNextInt())
-			throw new IllegalArgumentException("date string must have format dd/mm/yyyy");
-		int day = scanner.nextInt();
-		if (!scanner.hasNextInt())
-			throw new IllegalArgumentException("date string must have format dd/mm/yyyy");
-		int month = scanner.nextInt();
-		if (!scanner.hasNextInt())
-			throw new IllegalArgumentException("date string must have format dd/mm/yyyy");
-		int year = scanner.nextInt();
-		if (scanner.hasNext())
-			throw new IllegalArgumentException("date string must have format dd/mm/yyyy");
-		birthdate = LocalDate.of(year, month, day);
+		
+		try{
+			int day = scanner.nextInt();
+			int month = scanner.nextInt();
+			int year = scanner.nextInt();
+			birthdate = LocalDate.of(year, month, day);
+		}	catch(IllegalArgumentException e){
+			System.out.println("Date string must have formet dd/mm/yyyy");
+		}
+
 	}
 	
 	@Override
