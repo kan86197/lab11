@@ -1,6 +1,7 @@
 package student;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 /**
@@ -69,18 +70,7 @@ public class Student {
 	//TODO Improve this code. Let LocalDate and DateTimeFormatter parse
 	// the string for you.  Eliminate the use of Scanner!
 	private void setBirthdate(String datestr) {
-		Scanner scanner = new Scanner(datestr);
-		scanner.useDelimiter("/");
-		
-		try{
-			int day = scanner.nextInt();
-			int month = scanner.nextInt();
-			int year = scanner.nextInt();
-			birthdate = LocalDate.of(year, month, day);
-		}	catch(IllegalArgumentException e){
-			System.out.println("Date string must have formet dd/mm/yyyy");
-		}
-
+		birthdate = LocalDate.parse(datestr, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 	}
 	
 	@Override
